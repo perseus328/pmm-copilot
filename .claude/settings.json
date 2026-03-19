@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"=== PMM Messaging Copilot ===\"; if [ -d docs ]; then echo \"docs/ folder found:\"; ls docs/; else echo \"WARNING: No docs/ folder found.\"; echo \"Create docs/calls/, docs/interviews/, docs/positioning/, docs/competitors/ and add your research files.\"; echo \"Then run /ingest to get started.\"; fi; if [ -f outputs/research-synthesis.md ]; then echo \"\"; echo \"Research synthesis exists — ready to generate deliverables.\"; else echo \"\"; echo \"No research synthesis yet — run /ingest first.\"; fi'",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A file was just written. If the file path contains 'outputs/' AND it is a PMM deliverable (positioning statement, battlecard, headlines, launch brief, or message gaps critique), scan the written content for marketing claims about product capabilities, benefits, or differentiators that do NOT have a source citation (a quote, a source file reference, or [NEEDS EVIDENCE] tag). If you find unsupported claims, return a systemMessage listing the specific unsupported claims so the user can address them. If all claims are cited, the file is a .gitkeep, or the file is not a PMM deliverable, return nothing.",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Review what was just produced in this turn. If a PMM deliverable was generated and written to outputs/ (positioning statement, battlecard, headlines, launch brief, or critique), verify: (1) The file was actually written successfully, (2) Major claims in the output have source citations or [NEEDS EVIDENCE] tags. If both checks pass, or if no deliverable was generated this turn, return 'approve'. If a deliverable was generated but lacks citations on major claims, return 'block' with a specific reason explaining which claims need evidence.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
