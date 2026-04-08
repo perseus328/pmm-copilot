@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-Resolve AI is the **AI for prod platform** that closes the loop from alert to root cause — automatically, across every tool in the stack, with evidence engineers can trust. Where all prior solutions required engineers to do the work of figuring out what's going on, Resolve has built the AI agent layer that does that work for them.
+Resolve AI is the **production intelligence platform** that closes the loop from alert to root cause — automatically, across every tool in the stack, with evidence engineers can trust. Where all prior solutions required engineers to do the work of figuring out what's going on, Resolve has built the AI agent layer that does that work for them.
 
 The thesis in one line: **Most of the time your engineering team loses isn't from fixing issues — it's from figuring out what's going on.**
 
@@ -31,6 +31,10 @@ The emerging build-vs-buy alternative. Teams can automate narrow, single-enginee
 
 ## 2. Unique Attributes — What Does Resolve Have That No One Else Does?
 
+### Cross-Stack Agent Swarm
+Resolve deploys a coordinated swarm of specialized AI agents that simultaneously query logs (Splunk, Loki, Elasticsearch), metrics (Datadog, Prometheus, Grafana, Cortex), traces (Jaeger, Tempo, OpenTelemetry), infrastructure state (Kubernetes, AWS, GCP), deployment history (GitHub, GitLab, ArgoCD), and runbooks (Confluence, Notion) — in parallel, at the moment an alert fires. No human pivot. No single-vendor constraint. The result is a structured investigation with ranked working theories, evidence, and a probable root cause — delivered before the war room starts.
+
+**So what?** Engineers start incidents with answers instead of questions. The first hour of every incident — triage, correlation, context-gathering — is done before they open a dashboard.
 
 ### Post-Trained Models on Real Production Patterns
 Resolve's AI is not generic LLM reasoning applied to observability. The models are post-trained on real incident patterns across production deployments at DoorDash, Coinbase, Zscaler, and dozens of other engineering organizations. There is also a continuous eval loop that improves accuracy over time in each customer environment. This is the compounding flywheel: every investigation Resolve runs makes the next one faster and more precise.

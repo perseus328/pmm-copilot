@@ -1,7 +1,7 @@
 ---
 description: Generate a PMM deliverable using parallel sub-agent analysis. Run /ingest first.
 allowed-tools: Read, Write, Glob
-argument-hint: "positioning | headlines | battlecard | launch-brief | all"
+argument-hint: "positioning | headlines | battlecard | launch-brief | weekly-update | all"
 ---
 
 # Generate PMM Deliverable
@@ -59,15 +59,22 @@ Write to `outputs/launch-brief.md`.
 
 ### `all`
 
-Run all four sequences above in the most efficient order:
+Run all five sequences above in the most efficient order:
 1. First: `positioning` (requires parallel agents — do this first while context is freshest)
 2. Then: `headlines`, `battlecard`, `launch-brief` (can use positioning output as additional input)
+3. Finally: `weekly-update` to produce the enablement-ready delta pack
 
-After all four complete, write `outputs/session-summary.md` listing every file generated, its word count, and a 1-line description of what it contains.
+After all five complete, write `outputs/session-summary.md` listing every file generated, its word count, and a 1-line description of what it contains.
+
+---
+
+### `weekly-update`
+
+Run `/weekly-update` logic directly (see `.claude/commands/weekly-update.md` for full instructions). Write to `outputs/weekly-what-changed.md` (or with a label argument when provided).
 
 ---
 
 ### Unrecognized argument
 
-Tell the user: "Available options: `positioning`, `headlines`, `battlecard`, `launch-brief`, `all`"
+Tell the user: "Available options: `positioning`, `headlines`, `battlecard`, `launch-brief`, `weekly-update`, `all`"
 Show a brief description of each option.

@@ -51,6 +51,7 @@ Follow the April Dunford "Obviously Awesome" positioning framework:
 | `/battlecard [competitor]` | Generate a focused 1-page sales battlecard |
 | `/headlines` | Generate 7 homepage headline/subheadline options |
 | `/critique` | Score current messaging against customer research (5 dimensions) |
+| `/weekly-update [week-label]` | Rep-facing weekly "what changed" enablement pack (field-forward tone; internal critique stays in `/critique`) |
 
 **Workflow**: Always run `/ingest` first. All other commands depend on `outputs/research-synthesis.md`.
 

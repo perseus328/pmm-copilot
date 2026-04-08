@@ -10,6 +10,7 @@ Drop your research files into `docs/` and run slash commands to generate:
 - **1-page battlecard** — objection handlers, trap questions, landmines to avoid
 - **Launch brief** — full cross-functional alignment doc
 - **Message gaps critique** — 5-dimension scoring of your current messaging vs. customer reality
+- **Weekly what-changed pack** — rep-facing field updates (buyer language, talk tracks; not internal messaging audits)
 
 ## Claude Code Primitives Demonstrated
 
@@ -46,6 +47,7 @@ Files prefixed `EXAMPLE-` are sample files showing the expected format. Replace 
 /battlecard acme-corp      # Generate a competitor-specific battlecard
 /headlines                 # Generate 7 homepage headline options
 /generate launch-brief     # Generate a full launch brief
+/weekly-update 2026-W14    # Generate weekly "what changed" enablement pack
 /generate all              # Run all four deliverables in one go
 ```
 
@@ -63,7 +65,8 @@ pmm-copilot/
 │       ├── generate.md                # /generate [type]
 │       ├── battlecard.md              # /battlecard [competitor]
 │       ├── headlines.md               # /headlines
-│       └── critique.md                # /critique
+│       ├── critique.md                # /critique
+│       └── weekly-update.md           # /weekly-update [week-label]
 ├── agents/                            # Sub-agents (run in parallel)
 │   ├── voice-of-customer.md           # Extracts verbatims and language themes
 │   ├── competitor-analyst.md          # Synthesizes competitive intelligence
@@ -98,6 +101,12 @@ User runs /generate positioning
   └─ Synthesizes agent outputs → outputs/positioning-statement.md
   └─ PostToolUse hook fires → checks for unsupported claims
   └─ Stop hook fires → blocks if citations are missing
+
+User runs /weekly-update 2026-W14
+  └─ Reads current outputs/ artifacts + docs/ context
+  └─ Writes rep-facing deltas (buyer language, talk tracks — not internal positioning scorecards)
+  └─ Writes outputs/weekly-what-changed-2026-W14.md
+  └─ Includes prompts for NotebookLM audio/quiz/role-play assets
 
 Meanwhile, pmm-copilot SKILL auto-activates on any PMM language
   └─ Applies Uniqueness Test, Evidence Test, "So What?" Test to all output
